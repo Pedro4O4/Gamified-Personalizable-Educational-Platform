@@ -368,7 +368,7 @@ namespace LastTriel.Controllers
             ViewBag.LearnerId = learnerId;
             return View(notifications);
         }
-        public async Task<IActionResult> ViewingTextOfMessages(int learnerId, string urgency, int nid)
+        public async Task<IActionResult> ViewingTextOfMessages(int learnerId, string urgency, int notificationId)
         {
             var notifications = new List<Notification>();
 
@@ -380,7 +380,7 @@ namespace LastTriel.Controllers
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@learnerID", learnerId));
                     command.Parameters.Add(new SqlParameter("@urgency", urgency));
-                    command.Parameters.Add(new SqlParameter("@notfication_id", nid)); // Corrected parameter name
+                    command.Parameters.Add(new SqlParameter("@notfication_id", notificationId));
 
                     using (var reader = await command.ExecuteReaderAsync())
                     {
@@ -400,7 +400,6 @@ namespace LastTriel.Controllers
                 }
             }
 
-            ViewBag.LearnerId = learnerId;
             return View(notifications);
         }
 
@@ -408,9 +407,7 @@ namespace LastTriel.Controllers
 
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateMessageStatus(int learnerId, int notificationId, bool readStatus, string urgency)
+        public async Task<IActionResult> UpdateMessageStatus(int learnerId, int notificationId, bool readStatus)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -426,7 +423,16 @@ namespace LastTriel.Controllers
                 }
             }
 
-            return RedirectToAction("ViewingTextOfMessages", new { learnerId = learnerId, urgency = urgency, nid = notificationId });
+            if (readStatus)
+            {
+                TempData["Message"] = "Read successfully";
+            }
+            else
+            {
+                TempData["Message"] = "Unread successfully";
+            }
+
+            return RedirectToAction("ViewingMessages", new { learnerId = learnerId });
         }
 
         // GET: Learners/Details/5

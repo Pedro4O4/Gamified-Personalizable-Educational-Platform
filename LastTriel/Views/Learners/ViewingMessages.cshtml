@@ -1,12 +1,15 @@
 ﻿@model IEnumerable<LastTriel.Models.Notification>
 
-
-
 @{
     ViewData["Title"] = "Viewing Messages";
 }
 
-
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
 
 <h1>Messages</h1>
 
@@ -22,15 +25,26 @@
         @foreach (var notification in Model)
         {
             <tr>
-            <td>@notification.NotificationId</td>
+                <td>@notification.NotificationId</td>
                 <td>@notification.Urgency</td>
                 <td>
+                    <form asp-action="ViewingTextOfMessages" method="get">
+                        <input type="hidden" name="learnerId" value="@ViewBag.LearnerId" />
+                        <input type="hidden" name="urgency" value="@notification.Urgency" />
+                        <input type="hidden" name="notificationId" value="@notification.NotificationId" />
+                        <button type="submit" class="btn btn-info">View Text</button>
+                    </form>
                     <form asp-action="UpdateMessageStatus" method="post">
                         <input type="hidden" name="learnerId" value="@ViewBag.LearnerId" />
                         <input type="hidden" name="notificationId" value="@notification.NotificationId" />
                         <input type="hidden" name="readStatus" value="true" />
-                        <input type="hidden" name="urgency" value="@notification.Urgency" />
-                        <button type="submit" class="btn btn-info">View Text</button>
+                        <button type="submit" class="btn btn-success">Mark as Read</button>
+                    </form>
+                    <form asp-action="UpdateMessageStatus" method="post">
+                        <input type="hidden" name="learnerId" value="@ViewBag.LearnerId" />
+                        <input type="hidden" name="notificationId" value="@notification.NotificationId" />
+                        <input type="hidden" name="readStatus" value="false" />
+                        <button type="submit" class="btn btn-warning">Mark as Unread</button>
                     </form>
                 </td>
             </tr>
