@@ -1,0 +1,43 @@
+﻿@model IEnumerable<LastTriel.Models.Learner>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="my-4">Learners</h1>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Sid)</th>
+            <th>@Html.DisplayNameFor(model => model.Fname)</th>
+            <th>@Html.DisplayNameFor(model => model.Lname)</th>
+            <th>@Html.DisplayNameFor(model => model.Gender)</th>
+            <th>@Html.DisplayNameFor(model => model.Country)</th>
+            <th>@Html.DisplayNameFor(model => model.Culture)</th>
+            <th>@Html.DisplayNameFor(model => model.BirthDate)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Sid)</td>
+                <td>@Html.DisplayFor(modelItem => item.Fname)</td>
+                <td>@Html.DisplayFor(modelItem => item.Lname)</td>
+                <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                <td>@Html.DisplayFor(modelItem => item.Country)</td>
+                <td>@Html.DisplayFor(modelItem => item.Culture)</td>
+                <td>@Html.DisplayFor(modelItem => item.BirthDate)</td>
+                <td>
+                    <a asp-action="GetLearnerCourses" asp-route-learnerId="@item.Sid" class="btn btn-info btn-sm">View Courses</a>
+                    <a asp-action="GetTakenAssessment" asp-route-learnerId="@item.Sid" class="btn btn-primary btn-sm">View Taken Assessment</a>
+                    <a asp-action="GetHighestScoredAssessment" class="btn btn-primary">Get Highest Scored Assessment</a>
+                    <a asp-action="Courseregister" asp-route-learnerId="@item.Sid" class="btn btn-primary">Register Course</a>
+                    <a asp-action="ViewingMessages" asp-route-learnerId="@item.Sid" class="btn btn-warning btn-sm">View Messages</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

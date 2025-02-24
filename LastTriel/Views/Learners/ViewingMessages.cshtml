@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LastTriel.Models.Notification>
+
+
+
+@{
+    ViewData["Title"] = "Viewing Messages";
+}
+
+
+
+<h1>Messages</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Notification ID</th>
+            <th>Urgency</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var notification in Model)
+        {
+            <tr>
+            <td>@notification.NotificationId</td>
+                <td>@notification.Urgency</td>
+                <td>
+                    <form asp-action="UpdateMessageStatus" method="post">
+                        <input type="hidden" name="learnerId" value="@ViewBag.LearnerId" />
+                        <input type="hidden" name="notificationId" value="@notification.NotificationId" />
+                        <input type="hidden" name="readStatus" value="true" />
+                        <input type="hidden" name="urgency" value="@notification.Urgency" />
+                        <button type="submit" class="btn btn-info">View Text</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,20 @@
+﻿@model LastTriel.Models.Instructor
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+
+    <div class="alert alert-warning">
+        <strong>Warning!</strong> This instructor has courses with enrolled students. Deleting this instructor will also remove these courses and their enrollments.
+    </div>
+
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="InstructorId" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a> |
+    <a asp-action="CoursesOfLearners" asp-route-id="@Model.InstructorId" class="btn btn-primary">View Courses of Learners</a>
+</form>

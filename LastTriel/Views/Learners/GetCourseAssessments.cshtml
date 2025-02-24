@@ -1,0 +1,43 @@
+﻿@model IEnumerable<LastTriel.Models.Assessment>
+
+<h2>Assessments</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Assessment ID</th>
+            <th>Module ID</th>
+            <th>Course ID</th>
+            <th>Type</th>
+            <th>Total Marks</th>
+            <th>Passing Marks</th>
+            <th>Weightage</th>
+            <th>Criteria</th>
+            <th>Description</th>
+            <th>Title</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var assessment in Model)
+        {
+            <tr>
+                <td>@assessment.AssessmentId</td>
+                <td>@assessment.ModuleId</td>
+                <td>@assessment.Cid</td>
+                <td>@assessment.Type</td>
+                <td>@assessment.TotalMarks</td>
+                <td>@assessment.PassingMarks</td>
+                <td>@assessment.Weightage</td>
+                <td>@assessment.Criteria</td>
+                <td>@assessment.Description</td>
+                <td>@assessment.Title</td>
+                <td>
+             
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to Learners</a>
+</div>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<LastTriel.Models.Assessment>
+
+@{
+    ViewData["Title"] = "Instructor Assessments";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Assessment Id</th>
+            <th>Module Id</th>
+            <th>Course Id</th>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Total Marks</th>
+            <th>Passing Marks</th>
+            <th>Weightage</th>
+            <th>Criteria</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AssessmentId</td>
+                <td>@item.ModuleId</td>
+                <td>@item.Cid</td>
+                <td>@item.Title</td>
+                <td>@item.Type</td>
+                <td>@item.TotalMarks</td>
+                <td>@item.PassingMarks</td>
+                <td>@item.Weightage</td>
+                <td>@item.Criteria</td>
+                <td>@item.Description</td>
+                <td>
+                    <a asp-action="GetLearnerScores" asp-route-assessmentId="@item.AssessmentId" class="btn btn-primary">View Learners Scores</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to Instructors</a>
+</div>

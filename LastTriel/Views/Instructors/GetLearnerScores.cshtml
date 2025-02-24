@@ -1,0 +1,53 @@
+﻿@model IEnumerable<(int Sid, int ScoredPoints)>
+
+@{
+    ViewData["Title"] = "Learner Scores";
+}
+<link rel="stylesheet" href="~/css/StyleSheet.css">
+<script src="~/js/script.js"></script>
+
+<h1>Learner Scores</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>SID</th>
+            <th>Scored Points</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Sid</td>
+                <td>@item.ScoredPoints</td>
+                <td>
+                    <form asp-action="UpdateLearnerScore" method="post" class="form-inline">
+                        <input type="hidden" name="learnerId" value="@item.Sid" />
+                        <input type="hidden" name="assessmentId" value="@ViewBag.AssessmentId" />
+                        <input type="number" name="score" class="form-control" placeholder="New Score" required />
+                        <button type="submit" class="btn btn-primary">Update Score</button>
+                    </form>
+                    <!-- Form to send notification -->
+                    <form asp-action="SendNotification" method="post">
+                        <input type="hidden" name="learnerId" value="@item.Sid" />
+                        <div class="form-group">
+                            <label for="message">Notification Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="urgency">Urgency</label>
+                            <select class="form-control" id="urgency" name="Urgency">
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Notification</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

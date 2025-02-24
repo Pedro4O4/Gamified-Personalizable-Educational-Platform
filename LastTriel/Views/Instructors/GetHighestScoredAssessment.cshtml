@@ -1,0 +1,64 @@
+﻿@model IEnumerable<LastTriel.Models.Assessment>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highest Scored Assessments</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .table-hover tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        th {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Highest Scored Assessments</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th onclick="sortTable(0)">Assessment ID</th>
+                    <th onclick="sortTable(1)">Course ID</th>
+                    <th onclick="sortTable(2)">Module ID</th>
+                    <th onclick="sortTable(3)">Title</th>
+                    <th onclick="sortTable(4)">Type</th>
+                    <th onclick="sortTable(5)">Total Marks</th>
+                    <th onclick="sortTable(6)">Passing Marks</th>
+                    <th onclick="sortTable(7)">Weightage</th>
+                    <th onclick="sortTable(8)">Criteria</th>
+                    <th onclick="sortTable(9)">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.AssessmentId</td>
+                        <td>@item.Cid</td>
+                        <td>@item.ModuleId</td>
+                        <td>@item.Title</td>
+                        <td>@item.Type</td>
+                        <td>@item.TotalMarks</td>
+                        <td>@item.PassingMarks</td>
+                        <td>@item.Weightage</td>
+                        <td>@item.Criteria</td>
+                        <td>@item.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    </script>
+</body>
+</html>

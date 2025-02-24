@@ -1,0 +1,27 @@
+﻿@model IEnumerable<LastTriel.Models.Notification>
+
+@{
+    ViewData["Title"] = "Viewing Text of Messages";
+}
+
+<h2>Viewing Text of Messages</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Notification ID</th>
+            <th>Message</th>
+            <th>Time Stamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NotificationId</td>
+                <td>@item.Message</td>
+                <td>@item.TimeStamp?.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>

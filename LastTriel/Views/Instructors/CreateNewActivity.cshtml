@@ -1,0 +1,53 @@
+﻿@model LastTriel.Models.LearningActivity
+
+@{
+    ViewData["Title"] = "Create New Activity";
+}
+
+<h2>Create New Activity</h2>
+
+<form asp-action="CreateNewActivity" method="post">
+    <div class="form-group">
+        <label asp-for="ActivityId" class="control-label"></label>
+        <input asp-for="ActivityId" class="form-control" />
+        <span asp-validation-for="ActivityId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ModuleId" class="control-label"></label>
+        <input asp-for="ModuleId" class="form-control" />
+        <span asp-validation-for="ModuleId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Cid" class="control-label"></label>
+        <input asp-for="Cid" class="form-control" />
+        <span asp-validation-for="Cid" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ActivityType" class="control-label"></label>
+        <input asp-for="ActivityType" class="form-control" />
+        <span asp-validation-for="ActivityType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Instruction" class="control-label"></label>
+        <input asp-for="Instruction" class="form-control" />
+        <span asp-validation-for="Instruction" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MaxPoints" class="control-label"></label>
+        <input asp-for="MaxPoints" class="form-control" />
+        <span asp-validation-for="MaxPoints" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,32 @@
+﻿@model List<dynamic>
+
+@{
+    ViewData["Title"] = "Assessment Breakdown";
+}
+
+<h2>Assessment Breakdown</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Total Marks</th>
+            <th>Scored Points</th>
+            <th>Percentage</th>
+            <th>Performance</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TotalMarks</td>
+                <td>@item.ScoredPoints</td>
+                <td>@item.Percentage.ToString("F2")%</td>
+                <td>@item.Performance</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to Learners</a>
+</div>

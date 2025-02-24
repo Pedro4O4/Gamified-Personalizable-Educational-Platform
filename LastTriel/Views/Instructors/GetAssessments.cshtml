@@ -1,0 +1,43 @@
+﻿@model IEnumerable<LastTriel.Models.Assessment>
+
+@{
+    ViewData["Title"] = "Assessments for Module";
+}
+<link rel="stylesheet" href="~/css/StyleSheet.css">
+<script src="~/js/script.js"></script>
+<h1>Assessments for Module</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.AssessmentId)</th>
+            <th>@Html.DisplayNameFor(model => model.ModuleId)</th>
+            <th>@Html.DisplayNameFor(model => model.Cid)</th>
+            <th>@Html.DisplayNameFor(model => model.Type)</th>
+            <th>@Html.DisplayNameFor(model => model.TotalMarks)</th>
+            <th>@Html.DisplayNameFor(model => model.PassingMarks)</th>
+            <th>@Html.DisplayNameFor(model => model.Weightage)</th>
+            <th>@Html.DisplayNameFor(model => model.Criteria)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.AssessmentId)</td>
+                <td>@Html.DisplayFor(modelItem => item.ModuleId)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cid)</td>
+                <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                <td>@Html.DisplayFor(modelItem => item.TotalMarks)</td>
+                <td>@Html.DisplayFor(modelItem => item.PassingMarks)</td>
+                <td>@Html.DisplayFor(modelItem => item.Weightage)</td>
+                <td>@Html.DisplayFor(modelItem => item.Criteria)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+   

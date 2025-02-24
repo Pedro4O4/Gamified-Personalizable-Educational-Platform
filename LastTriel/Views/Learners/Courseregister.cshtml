@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Course Register";
+}
+
+<h1>Course Register</h1>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.Message
+    </div>
+}
+
+<form asp-action="Courseregister" method="post">
+    <input type="hidden" name="learnerId" value="@ViewBag.LearnerId" />
+    <div class="form-group">
+        <label for="courseId">Course ID</label>
+        <input type="number" class="form-control" id="courseId" name="courseId" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Register for Course</button> |
+
+    <a asp-action="Index" class="btn btn-primary">Back to Learners</a>
+
+</form>
+

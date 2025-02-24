@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LastTriel.Models.Course>
+
+@{
+    ViewData["Title"] = "Courses Taught by Instructor";
+}
+
+<link rel="stylesheet" href="~/css/StyleSheet.css">
+<script src="~/js/script.js"></script>
+
+<h1>Courses Taught by Instructor</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Cid)</th>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.LearningObjective)</th>
+            <th>@Html.DisplayNameFor(model => model.CreditPoints)</th>
+            <th>@Html.DisplayNameFor(model => model.DifficultyLevel)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Cid)</td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.LearningObjective)</td>
+                <td>@Html.DisplayFor(modelItem => item.CreditPoints)</td>
+                <td>@Html.DisplayFor(modelItem => item.DifficultyLevel)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>
+                    <a asp-action="GetModules" asp-route-id="@item.Cid" class="btn btn-primary">View Modules</a> |
+                    <a asp-action="GetHighestScoredAssessment" asp-route-id="@item.Cid" class="btn btn-primary">Get Highest Scored Assessment</a> |
+                    <a asp-action="GetLearnersByCourse" asp-route-courseId="@item.Cid" class="btn btn-primary">View Learners</a> |
+                    <a asp-action="GetAllAssessments" asp-route-cid="@item.Cid" class="btn btn-primary">View Assessments</a> |
+                    <form asp-action="DeleteCourse" method="post" style="display:inline;">
+                        <input type="hidden" name="courseId" value="@item.Cid" />
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

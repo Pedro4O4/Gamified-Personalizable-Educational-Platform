@@ -1,0 +1,42 @@
+﻿@model List<Learner>
+
+@{
+    ViewData["Title"] = "Learners by Course";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var learner in Model)
+            {
+                <tr>
+                    <td>@learner.Sid</td>
+                    <td>@learner.Fname</td>
+                    <td>@learner.Lname</td>
+                    <td>@learner.Country</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p>The course cannot be deleted because students are enrolled.</p>
+}
+else
+{
+    <p>No learners found for this course.</p>
+
+    <form asp-action="RemoveCourse" method="post">
+        <input type="hidden" name="courseId" value="@ViewBag.CourseId" />
+        <button type="submit" class="btn btn-danger">Delete course</button>
+    </form>
+}

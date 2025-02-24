@@ -1,0 +1,37 @@
+﻿@model IEnumerable<LastTriel.Models.Module>
+
+@{
+    ViewData["Title"] = "Modules for Course";
+}
+<link rel="stylesheet" href="~/css/StyleSheet.css">
+<script src="~/js/script.js"></script>
+
+<h1>Modules for Course</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ModuleId)</th>
+            <th>@Html.DisplayNameFor(model => model.Cid)</th>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.DifficultyLevel)</th>
+            <th>@Html.DisplayNameFor(model => model.Url)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ModuleId)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cid)</td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.DifficultyLevel)</td>
+                <td>@Html.DisplayFor(modelItem => item.Url)</td>
+                <td>
+                <a asp-action="GetLearningActivity" asp-route-moduleId="@item.ModuleId" asp-route-cid="@item.Cid" class="btn btn-primary">View Learning Activities</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
