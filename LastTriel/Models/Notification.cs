@@ -13,5 +13,6 @@ public partial class Notification
 
     public string? Urgency { get; set; }
 
+
     public virtual ICollection<RecivedNotification> RecivedNotifications { get; set; } = new List<RecivedNotification>();
 }

@@ -40,12 +40,7 @@
                         <input type="hidden" name="readStatus" value="true" />
                         <button type="submit" class="btn btn-success">Mark as Read</button>
                     </form>
-                    <form asp-action="UpdateMessageStatus" method="post">
-                        <input type="hidden" name="learnerId" value="@ViewBag.LearnerId" />
-                        <input type="hidden" name="notificationId" value="@notification.NotificationId" />
-                        <input type="hidden" name="readStatus" value="false" />
-                        <button type="submit" class="btn btn-warning">Mark as Unread</button>
-                    </form>
+
                 </td>
             </tr>
         }
