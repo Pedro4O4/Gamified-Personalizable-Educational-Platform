@@ -28,6 +28,8 @@
                 <td>@notification.NotificationId</td>
                 <td>@notification.Urgency</td>
                 <td>
+                    <a asp-action="IsMessageRead" asp-route-sid="@ViewBag.LearnerId" asp-route-notificationId="@notification.NotificationId" class="btn btn-info">Check Read Status</a>
+
                     <form asp-action="ViewingTextOfMessages" method="get">
                         <input type="hidden" name="learnerId" value="@ViewBag.LearnerId" />
                         <input type="hidden" name="urgency" value="@notification.Urgency" />
@@ -40,9 +42,8 @@
                         <input type="hidden" name="readStatus" value="true" />
                         <button type="submit" class="btn btn-success">Mark as Read</button>
                     </form>
-
                 </td>
-            </tr>
+              </tr>
         }
     </tbody>
 </table>

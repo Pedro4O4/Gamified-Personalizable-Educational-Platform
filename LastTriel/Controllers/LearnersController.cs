@@ -434,6 +434,32 @@ namespace LastTriel.Controllers
 
             return RedirectToAction("ViewingMessages", new { learnerId = learnerId });
         }
+        public async Task<IActionResult> IsMessageRead(int sid, int notificationId)
+        {
+            bool isRead = false;
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                using (var command = new SqlCommand("viewTheRead", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@sid", sid));
+                    command.Parameters.Add(new SqlParameter("@notification_id", notificationId));
+
+                    var result = await command.ExecuteScalarAsync();
+                    if (result != null)
+                    {
+                        isRead = (bool)result;
+                    }
+                }
+            }
+
+            ViewBag.IsRead = isRead;
+            return View();
+        }
+
+
 
         // GET: Learners/Details/5
         public async Task<IActionResult> Details(int? id)
