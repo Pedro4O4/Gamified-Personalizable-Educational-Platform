@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Message Read Status";
+}
+
+<h2 class="text-center my-3">Message Read Status</h2>
+
+<div class="container">
+    @if (ViewBag.IsRead)
+    {
+        <p class="text-success display-4">The message has been read.</p>
+    }
+    else
+    {
+        <p class="text-danger display-4">The message has not been read.</p>
+    }
+
+
+</div>
